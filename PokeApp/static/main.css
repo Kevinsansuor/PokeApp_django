@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    background: url(../static/pk_bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    box-sizing: border-box;
+    font-family: "Press Start 2P", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
+ul{
+    list-style: none;
+    margin: none;
+    padding: 0;
+}
+
+li{
+    list-style: none;
+    margin: none;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    font-size: 3rem;
+    margin: 0;
+    font-weight: 900;
+}
+
+form {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+button {
+    color: #000000;
+    border: none;
+    padding: 25px 25px;
+    cursor: pointer;
+    border-radius: 12px;
+    border: solid 2.5px;
+    font-size: 1.3rem;
+    transition: .5s linear;
+    width: 45%;
+    background-color: rgb(255, 242, 188);
+    font-family: "Press Start 2P", system-ui;
+    font-weight: 600;
+    font-style: normal;
+}
+.container {
+    display: flex;
+    width: 100%; min-height: 100vh;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 5rem 0 ;
+}
+
+.pokedex{
+    display: flex;
+    flex-direction: column;
+    min-width: 45%;
+    min-height: calc(90vh - 10rem);
+    padding: 5rem 5rem;
+    /* border-radius: 25px; */
+    backdrop-filter: blur(8px) saturate(180%);
+    -webkit-backdrop-filter: blur(8px) saturate(180%);
+    background-color: rgba(255, 242, 188, 0.5);
+    border-radius: 25px;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    box-sizing: border-box;
+    justify-content: center;
+}
+
+.tittleApp{
+    width: 100%;
+    height: 250px;
+    background: url(./PokeApp_tittle.png);
+    background-repeat: no-repeat;
+    background-size: contain ;
+    background-position: center;
+}
+
+.busquedaPokemon label{
+    padding: 25px 0;
+    font-size: 1.3rem;
+}
+
+.busquedaPokemon{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin: auto;
+}
+
+form{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+
+
+.busquedaPokemon input[type="text"]{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    margin-top: 25px;
+    padding: 25px 15px;
+    border: none;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: hsla(0, 0%, 100%, 0.8);
+    border: 2px solid rgba(161, 155, 155, 0.5);
+    border-radius: 12px;
+    font-size: 1.3rem;
+}
+
+.busquedaPokemon input[type="text"]:focus {
+    outline: none;
+    border-color: rgb(255, 224, 99); 
+    align-items: center;
+}
+
+/* .img_pokeApp{
+    background-color: red;
+    width: max-content;
+} */
+
+
+button:hover {
+    background-color: rgba(255, 242, 188, 0.5);
+}
+
+.pokemon-info {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pokemon-info img {
+    max-width: 200px;
+    height: auto;
+}
+
+.pokemon-info{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#hideEvolutionsButton{
+    display: flex;
+    width: 100%;
+}
+
+.titulo_pokevista{
+    width: 100%;
+}
+
+.vista_pokemones{
+        /* width: 100%; */
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 50px;
+        background: hsl(0, 0%, 100%);
+        padding: 45px 45px 40px 45px;
+        border-radius: 10px;
+        align-items: center;
+        /* justify-content: space-between; */
+}
+
+.vista_pokemones .poke_info{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
+}
+
+.vista_pokemones img{
+    width: 300px;
+    border-radius: 5px;
+    background-color: rgb(255, 224, 99);
+    object-fit: fill;
+}
+
+.evolutions{
+    display: none;
+}
+
+.evolutions.show{
+    display: flex;
+    flex-direction: column;
+}
+
+.btn_evols{
+     width: 100%;
+     padding: 15px 10px;
+     border: none;
+     box-sizing: border-box;
+     font-size: 16px;
+     border-radius: 25px;
+}
+
+.pokemon-info .pokemon{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 25px;
+    flex-direction: column;
+}
+
+.evolutions .vista{
+    display: flex;
+    flex-direction: row;
+}
+
+.vista .pokemon_xd{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.pokemon_xd li{
+    background-color: #ffffff41;
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    min-height: 600px;
+    width: 100%;
+    gap: 25px;
+    justify-content: center;
+    align-items: center;
+}
+
+.pokemon_xd li img{
+    width: 250px;
+}
+
+
+
+

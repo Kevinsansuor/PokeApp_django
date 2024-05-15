@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+    <title>PokeApp</title>
+</head>
+<body>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+        <div class="pokedex">
+            <div class="tittleApp">
+                <!--Contenedor imagen App-->
+            </div>
+        <form action="{% url 'index' %}" method="post" class="busquedaPokemon">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Buscar</button>
+        </form>
+        {% if pokemon_info %}
+        <div class="pokemon-info">
+            
+            <div class="pokemon">
+                <div class="titulo_pokevista">
+                    <h2>{{ pokemon_info.name }}</h2>
+                </div>
+    
+                <div class="vista_pokemones">
+                    <div class="poke_imagen">
+                        <img src="{{ pokemon_info.image_url }}" alt="{{ pokemon_info.name }}">
+                    </div>
+    
+                    
+                <div class="poke_info">
+                        <p><strong>Id:</strong> {{ pokemon_info.id }}</p>
+                        <p><strong>Nombre:</strong> {{ pokemon_info.name }}</p>
+                        {% comment %} <div class="btn_evols">
+                            <button id="hideEvolutionsButton">Mostrar Evoluciones</button>
+                        </div> {% endcomment %}
+
+                        <button id="hideEvolutionsButton">Mostrar Evoluciones</button>
+                </div>
+            </div>
+
+                
+
+                {% if evolutions %}
+                <div class="evolutions">
+                    <h3>Evoluciones:</h3>
+                   <div class="vista">
+                    <div class="pokemon_xd">
+                        {% for evolution in evolutions %}
+                        <li>
+                            <div class="info_evol">
+                                <img src="{{ evolution.image_url }}" alt="{{ evolution.name }}" class="evolution-image">
+                            <br>
+                            {{ evolution.name }}
+                            </div >
+                            <button class='btn_evols'>
+                                Buscar evolución
+                            </button>
+                        </li>
+                        {% endfor %}
+                    </div>
+                   </div>
+
+                </div>
+                {% endif %}
+    </div>
+    
+
+            </div>
+
+        </div>
+        {% endif %}
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('hideEvolutionsButton').addEventListener('click', function() {
+            var evolutionsDiv = document.querySelector('.evolutions');
+            if (evolutionsDiv) {
+                evolutionsDiv.classList.add('show');
+            }
+        });
+    </script>
+</body>
+</html>
