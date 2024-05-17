@@ -17,6 +17,20 @@ class Pokemon(models.Model):
     # Campo para la imagen del Pokémon (URL o ruta local)
     imagen = models.URLField(max_length=255, blank=True)
     
+    # Campo region del Pokemon
+    region = models.CharField(max_length=100)
+    
+    #Camppo atributo principal Pokemon
+    mejor_atributo = models.CharField(max_length=100)
+    
+    #Campo atributo descripcion Pokemon
+    descripcion_poke = models.CharField(max_length=100)
+    
+    #Campo especie Pokemon
+    especie_poke = models.CharField(max_length=100)
+    
+    #Campo habilidades Pokemon
+    habilidades_poke = models.CharField(max_length=100)
 
     # Método para mostrar el nombre del Pokémon
     def __str__(self):

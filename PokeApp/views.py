@@ -39,6 +39,10 @@ def index(request):
                     'id': Pokemon_model.numero_pokedex,
                     'types': Pokemon_model.tipo,
                     'image_url': Pokemon_model.imagen,
+                    'attribute': Pokemon_model.mejor_atributo,
+                    'description': Pokemon_model.descripcion_poke,
+                    'species': Pokemon_model.especie_poke,
+                    'habilities': Pokemon_model.habilidades_poke
                 } 
                 
             except Pokemon.DoesNotExist:
