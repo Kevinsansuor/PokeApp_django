@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import FormularioPokeApp
 import requests
 from .models import Pokemon
+ 
 
 
 
@@ -63,16 +64,22 @@ def index(request):
                 """ for name_entry in bulbasaur_data['names']:
                     if name_entry['language']['name'] == 'es':
                         print(f"Bulbasaur in Spanish is: {name_entry['name']}") """
-                
-                pokemon_info = {
-                    'name': pokemon_data['name'].capitalize(),
-                    'id': pokemon_data['id'],
-
-                    'types': ', '.join([t['type']['name'].capitalize() for t in pokemon_data['types']]),
-                    'image_url': pokemon_data['sprites']['front_default'],
-                    
-                    'abilities': pokemon_data['abilities'],
-                }
+                        
+                pokemon_data = response.json()
+                species_url = pokemon_data['species']['url']
+                species_response = requests.get(species_url)
+                if species_response.status_code == 200:
+                    species_data = species_response.json()
+                    pokemon_info = {
+                            'name': pokemon_data['name'].capitalize(),
+                            'id': pokemon_data['id'],
+                            'types': ', '.join([t['type']['name'].capitalize() for t in pokemon_data['types']]),
+                            'image_url': pokemon_data['sprites']['front_default'],
+                            'attribute': 'N/A',  
+                            'description': species_data['flavor_text_entries'][0]['flavor_text'],
+                            'species': species_data['genera'][0]['genus'],
+                            'habilities': ', '.join([a['ability']['name'].capitalize() for a in pokemon_data['abilities']])
+                    }
                 
                 """ Si hay Ok, guardar en la base de datos"""
                 
@@ -81,7 +88,12 @@ def index(request):
                     numero_pokedex = pokemon_info['id'],
                     tipo = pokemon_info['types'],
                     generacion = 1,
-                    imagen = pokemon_info['image_url']
+                    imagen = pokemon_info['image_url'],
+                    region="Kanto",
+                    mejor_atributo=pokemon_info['attribute'],
+                    descripcion_poke=pokemon_info['description'],
+                    especie_poke=pokemon_info['species'],
+                    habilidades_poke=pokemon_info['habilities'],
                 )
                 
                 Pokemon_instance.save()

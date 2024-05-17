@@ -4,11 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/main.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="{% static "pico-main/css/pico.min.css" %}" />
     <title>PokeApp</title>
+
+    
+
 </head>
 <body>
+
+    <dialog id="modal-example">
+        <article>
+          <header>
+            <button
+              aria-label="Close"
+              rel="prev"
+              data-target="modal-example"
+              onclick="toggleModal(event)"
+            ></button>
+            <h3>Crea tu Poke Cuenta!</h3>
+          </header>
+          <p>
+            Regístrate hoy mismo y descubre un mundo de Pokémon que te espera!
+          </p>
+
+        </br>
+
+        {% include 'register.html' %}
+
+          
+        </article>
+      </dialog>
+
+    <nav class="container-fluid">
+        <ul>
+          <li><strong>PokeApp</strong></li>
+        </ul>
+        <ul>
+
+            <li>
+                <button class="contrast" data-target="modal-example" onclick="toggleModal(event)">
+                    Crear cuenta
+                </button>
+            </li>
+
+        </ul>
+      </nav>
+
+      </br
 
     <!-- Contenedor principal -->
     <div class="container">
@@ -31,8 +75,7 @@
             
             <div class="pokemon">
                 <div class="titulo_pokevista">
-                    <h2>{{ pokemon_info.name }}</h2>
-                    <h2> lola {{ lang_es.name }}<h2>
+                    <h2>{{ pokemon_info.name }}</h2>                        
                 </div>
     
                 <div class="vista_pokemones">
@@ -54,6 +97,12 @@
                                 {% endfor %}
                             </ul>
                         </div>
+
+                        <h2>Description:</h2>
+                        <p>{{ pokemon_info.description }}</p>
+
+                        <h2>Species:</h2>
+                        <p>{{ pokemon_info.species }}</p>
 
 
                         <button id="hideEvolutionsButton">Mostrar Evoluciones</button>
@@ -94,13 +143,7 @@
         </div>
     </div>
 
-    <script>
-        document.getElementById('hideEvolutionsButton').addEventListener('click', function() {
-            var evolutionsDiv = document.querySelector('.evolutions');
-            if (evolutionsDiv) {
-                evolutionsDiv.classList.add('show');
-            }
-        });
-    </script>
+    <script src="{% static "/js/main.js" %}"></script>
+    
 </body>
 </html>

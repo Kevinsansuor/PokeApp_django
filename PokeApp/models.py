@@ -35,3 +35,4 @@ class Pokemon(models.Model):
     # Método para mostrar el nombre del Pokémon
     def __str__(self):
         return self.nombre
+

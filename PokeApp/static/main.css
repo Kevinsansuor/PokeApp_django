@@ -1,19 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 0;
     background: url(../static/pk_bg.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    display: flex;
-    box-sizing: border-box;
     font-family: "Press Start 2P", system-ui;
     font-weight: 400;
     font-style: normal;
+    min-height: 100vh;
 }
 
 ul{
@@ -43,39 +38,16 @@ form {
 }
 
 button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    vertical-align: middle;
-    gap: 15px;
-    color: #000000;
-    border: none;
-    padding: 25px 25px;
-    cursor: pointer;
-    border-radius: 12px;
-    border: solid 2.5px;
-    font-size: 1.3rem;
-    transition: .5s linear;
-    width: 45%;
-    background-color: rgb(255, 242, 188);
-    font-family: "Press Start 2P", system-ui;
-    font-weight: 600;
-    font-style: normal;
+
+    
 }
-.container {
-    display: flex;
-    width: 100%; min-height: 100vh;
-    margin: auto;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-    padding: 5rem 0 ;
-}
+
 
 .pokedex{
     display: flex;
     flex-direction: column;
     min-width: 45%;
+    max-width: 100%;
     min-height: calc(90vh - 10rem);
     padding: 5rem 5rem;
     /* border-radius: 25px; */
@@ -150,9 +122,9 @@ form{
 } */
 
 
-button:hover {
+/* button:hover {
     background-color: rgba(255, 242, 188, 0.5);
-}
+} */
 
 .pokemon-info {
     text-align: center;
