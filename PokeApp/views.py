@@ -6,6 +6,11 @@ from .models import Pokemon
 
 
 def index(request):
+    
+    pet_lang = requests.get("https://pokeapi.co/api/v2/language/7/")
+    lang_es = pet_lang.json()
+
+
     #Funcion index hace una petición
     pokemon_info = None
     #variable pokemon info vacia
@@ -50,11 +55,19 @@ def index(request):
             
             if response.status_code == 200:
                 pokemon_data = response.json()
+                
+                """ for name_entry in bulbasaur_data['names']:
+                    if name_entry['language']['name'] == 'es':
+                        print(f"Bulbasaur in Spanish is: {name_entry['name']}") """
+                
                 pokemon_info = {
                     'name': pokemon_data['name'].capitalize(),
                     'id': pokemon_data['id'],
+
                     'types': ', '.join([t['type']['name'].capitalize() for t in pokemon_data['types']]),
-                    'image_url': pokemon_data['sprites']['front_default']
+                    'image_url': pokemon_data['sprites']['front_default'],
+                    
+                    'abilities': pokemon_data['abilities'],
                 }
                 
                 """ Si hay Ok, guardar en la base de datos"""

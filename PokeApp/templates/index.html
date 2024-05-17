@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <title>PokeApp</title>
 </head>
 <body>
@@ -15,17 +16,23 @@
             <div class="tittleApp">
                 <!--Contenedor imagen App-->
             </div>
-        <form action="{% url 'index' %}" method="post" class="busquedaPokemon">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Buscar</button>
-        </form>
-        {% if pokemon_info %}
+                <form action="{% url 'index' %}" method="post" class="busquedaPokemon">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">
+                        Buscar
+                        <span class="material-symbols-outlined">
+                            search
+                        </span>
+                    </button>
+                </form>
+            {% if pokemon_info %}
         <div class="pokemon-info">
             
             <div class="pokemon">
                 <div class="titulo_pokevista">
                     <h2>{{ pokemon_info.name }}</h2>
+                    <h2> lola {{ lang_es.name }}<h2>
                 </div>
     
                 <div class="vista_pokemones">
@@ -37,9 +44,17 @@
                 <div class="poke_info">
                         <p><strong>Id:</strong> {{ pokemon_info.id }}</p>
                         <p><strong>Nombre:</strong> {{ pokemon_info.name }}</p>
-                        {% comment %} <div class="btn_evols">
-                            <button id="hideEvolutionsButton">Mostrar Evoluciones</button>
-                        </div> {% endcomment %}
+                        <p><strong>Tipo:</strong> {{ pokemon_info.types}}</p>
+
+                        <div class="habilidad">
+                            <ul>
+                                <h3>Habilidades:</h3>
+                                {% for ability in pokemon_info.abilities %}
+                                    <li>{{ ability.ability.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+
 
                         <button id="hideEvolutionsButton">Mostrar Evoluciones</button>
                 </div>
