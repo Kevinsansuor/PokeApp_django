@@ -36,3 +36,14 @@ class Pokemon(models.Model):
     def __str__(self):
         return self.nombre
 
+class Usuario(models.Model):
+    nombre_completo = models.CharField(max_length=255)
+    
+    celular = models.CharField(max_length=20, unique=True)
+    
+    email = models.EmailField(unique=True, null="False")
+    
+    contrasena = models.CharField(max_length=128)
+    
+    def __str__(self):
+        return self.nombre_completo

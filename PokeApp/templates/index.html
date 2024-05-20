@@ -41,7 +41,7 @@
         <ul>
           <li><strong>PokeApp</strong></li>
         </ul>
-        <ul>
+        <ul> 
 
             <li>
                 <button class="contrast" data-target="modal-example" onclick="toggleModal(event)">
@@ -63,7 +63,7 @@
                 <form action="{% url 'index' %}" method="post" class="busquedaPokemon">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <button type="submit">
+                    <button type="search" name="busqueda" placeholder="Busca por nombre o Id" aria-label="Buscar">
                         Buscar
                         <span class="material-symbols-outlined">
                             search

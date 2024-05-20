@@ -1,13 +1,14 @@
 # forms.py
 
 from django import forms
-from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from .models import Usuario
 
 class FormularioPokeApp(forms.Form):
     search_term = forms.CharField(label='Buscar Pokémon por nombre o ID', max_length=100, widget=forms.TextInput(attrs={'class': 'busquedaPokemon'}))
 
-class RegisterForm(UserCreationForm):
+class RegistroUsuarioForm(forms.ModelForm):
+    contrasena = forms.CharField(widget=forms.PasswordInput)
+
     class Meta:
-        model=User
-        fields = ['username','email','password1'] 
+        model = Usuario
+        fields = ['nombre_completo', 'celular', 'email', 'contrasena']

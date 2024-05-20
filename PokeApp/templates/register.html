@@ -1,49 +1,65 @@
-<form id="register" action="{% url 'index' %}" method="POST">
-    {% csrf_token %}
-    <fieldset>
-      <label>
-        Nombre completo
-        <input
-          required
-          name="nombre_completo"
-          placeholder="Nombre completo"
-          autocomplete="nombre"
-        />
-      </label>
-      <label>
-        Celular
-        <input
-          type="tel"
-          name="celular"
-          placeholder="Celular"
-          autocomplete="celular"
-          required
-        />
-      </label>
-      <label>
-        Correo
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          required
-{% comment %}                   autocomplete="email" {% endcomment %}
-        />
-      </label>
-      <label>
-        Contraseña
-        <input
-          type="password"
-          name="contrasena"
-          placeholder="Contraseña"
-          required
-{% comment %}                   autocomplete="password" {% endcomment %}
-        />
-      </label>
-    </fieldset>
-  
-        <button autofocus value="register" type="submit">
-          Registrarse
-        </button>
+<!-- myapp/templates/register.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <form id="register"  method="POST" action='{% url 'signup'%}' autocomplete="off">
+        {% csrf_token %}
+        <fieldset>
+          <label>
+            Nombre completo
+            <input
+              required
+              name="nombre_completo"
+              placeholder="Nombre completo"
+              autocomplete="nombre"
+            />
+          </label>
+          <label>
+            Celular
+            <input
+              type="tel"
+              name="celular"
+              placeholder="Celular"
+              autocomplete="celular"
+              required
+            />
+          </label>
+          <label>
+            Correo
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              required
+    {% comment %}                   autocomplete="email" {% endcomment %}
+            />
+          </label>
+          <label>
+            Contraseña
+            <input
+              type="password"
+              name="contrasena"
+              placeholder="Contraseña"
+              required
+    {% comment %}                   autocomplete="password" {% endcomment %}
+            />
+          </label>
+        </fieldset>
+      
+            <button autofocus value="register" type="submit">
+              Registrarse
+            </button>
+    
+            
+    
+      </form>
+    
+</body>
+</html>
 
-  </form>
+

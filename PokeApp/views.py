@@ -1,10 +1,21 @@
-from django.shortcuts import render
-from .forms import FormularioPokeApp
+from pyexpat.errors import messages
+from django.shortcuts import redirect, render
+from .forms import FormularioPokeApp, RegistroUsuarioForm
 import requests
-from .models import Pokemon
- 
+from .models import Pokemon, Usuario
 
-
+def signup(request):
+    if request.method == 'POST':
+        form_reg = RegistroUsuarioForm(request.POST)
+        if form_reg.is_valid():
+            nombre_completo = form_reg.cleaned_data['nombre_completo']
+            celular = form_reg.cleaned_data['celular']
+            email = form_reg.cleaned_data['email']
+            contrasena = form_reg.cleaned_data['contrasena']
+            usuario = Usuario(nombre_completo=nombre_completo, celular=celular, email=email, contrasena=contrasena)
+            usuario.save()
+            return redirect('index')  # Redireccionar a la página principal después del registro
+    return render(request, 'registro.html', {'form_reg': RegistroUsuarioForm()})
 
 def index(request):
     
@@ -18,6 +29,9 @@ def index(request):
     evolutions = []
     #Array de evoluciones
     form = FormularioPokeApp()
+    
+    usuario_nombre = None
+    
     
     if request.method == 'POST':
         #Si dentro del index se hace una petición de Post
@@ -138,29 +152,6 @@ def index(request):
     
 
 
-def search_pokemon(request):
-    form = FormularioPokeApp()
-
-    # Si se envió el formulario, procesamos la búsqueda
-    if request.method == 'POST':
-        form = FormularioPokeApp(request.POST)
-        if form.is_valid():
-            pokemon_name = form.cleaned_data['pokemon_name']
-            url = f'https://pokeapi.co/api/v2/pokemon/{pokemon_name.lower()}/'
-            response = requests.get(url)
-            if response.status_code == 200:
-                pokemon_data = response.json()
-
-                # Extraemos los datos relevantes del Pokemon
-                pokemon_info = {
-                    'name': pokemon_data['name'].capitalize(),
-                    'id': pokemon_data['id'],
-                    'types': ', '.join([t['type']['name'].capitalize() for t in pokemon_data['types']]),
-                    'image_url': pokemon_data['sprites']['front_default']
-                }
-                
-                
-                return render(request, 'pokemon_detail.html', {'form': form, 'pokemon_info': pokemon_info})
 
     # Si no se envió el formulario o hubo un error en la búsqueda, mostramos la página de inicio con el formulario
     return render(request, 'search_pokemon.html', {'form': form})
