@@ -1,5 +1,49 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+:root{
+
+
+    input:not([type=submit],
+[type=button],
+[type=reset],
+[type=checkbox],
+[type=radio],
+[type=file]),
+:where(select, textarea) {
+  --pico-outline-width: 0.0625rem;
+  background-color: hsla(45, 99%, 46%, 0.192);
+  backdrop-filter: blur(15px);
+  border: white 2px solid;
+  border-radius: 15px; 
+}
+
+[type=search] {
+    --pico-border-radius: 5rem;
+    --pico-icon-search: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(28, 13, 6)' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E");
+
+
+  }
+
+  [type=search]:hover{
+    --pico-icon-close: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(238, 1, 0)' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'%3E%3C/line%3E%3Cline x1='6' y1='6' x2='18' y2='18'%3E%3C/line%3E%3C/svg%3E");
+
+  }
+
+  [type=search]:active{
+    --pico-icon-close: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(238, 1, 0)' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'%3E%3C/line%3E%3Cline x1='6' y1='6' x2='18' y2='18'%3E%3C/line%3E%3C/svg%3E");
+
+  }
+
+  [type=search]::after{
+    --pico-icon-close: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(238, 1, 0)' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'%3E%3C/line%3E%3Cline x1='6' y1='6' x2='18' y2='18'%3E%3C/line%3E%3C/svg%3E");
+
+  }
+
+
+  
+}
+
+
 body {
     background: url(../static/pk_bg.jpg);
     background-repeat: no-repeat;
@@ -30,6 +74,11 @@ h1 {
     font-weight: 900;
 }
 
+button{
+    min-width: 25%;
+    padding: 10px 5px;
+}
+
 form {
     margin-bottom: 20px;
     display: flex;
@@ -37,11 +86,25 @@ form {
     width: 100%;
 }
 
-button {
-
-    
+.container .pokedex form button{
+    background-color: #FFBF00;
+    border-radius: 5px;
+    width: 25%;
+    border: solid 2px black;
 }
 
+.container .pokedex form button:hover{
+    background-color: #E8AE01;
+}
+
+.container .pokedex form input[type="search"]::-webkit-search-cancel-button {
+    background-color: red;
+    height: 16px;
+    width: 16px;
+    background: url('path_to_your_close_icon.png') no-repeat center center;
+    background-size: contain;
+  }
+  
 
 .pokedex{
     display: flex;

@@ -63,11 +63,8 @@
                 <form action="{% url 'index' %}" method="post" class="busquedaPokemon">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <button type="search" name="busqueda" placeholder="Busca por nombre o Id" aria-label="Buscar">
+                    <button id="busqueda_pk" type="search" name="busqueda" placeholder="Busca por nombre o Id" aria-label="Buscar">
                         Buscar
-                        <span class="material-symbols-outlined">
-                            search
-                        </span>
                     </button>
                 </form>
             {% if pokemon_info %}
@@ -89,16 +86,9 @@
                         <p><strong>Nombre:</strong> {{ pokemon_info.name }}</p>
                         <p><strong>Tipo:</strong> {{ pokemon_info.types}}</p>
 
-                        <div class="habilidad">
-                            <ul>
-                                <h3>Habilidades:</h3>
-                                {% for ability in pokemon_info.abilities %}
-                                    <li>{{ ability.ability.name }}</li>
-                                {% endfor %}
-                            </ul>
-                        </div>
+                        <p><strong>Habilidades:</strong>{{ pokemon_info.habilities }}</p>
 
-                        <h2>Description:</h2>
+                        <h2>Descripción de {{pokemon_info.name}}:</h2>
                         <p>{{ pokemon_info.description }}</p>
 
                         <h2>Species:</h2>

@@ -74,26 +74,26 @@ def index(request):
             
             if response.status_code == 200:
                 pokemon_data = response.json()
-                
-                """ for name_entry in bulbasaur_data['names']:
-                    if name_entry['language']['name'] == 'es':
-                        print(f"Bulbasaur in Spanish is: {name_entry['name']}") """
-                        
-                pokemon_data = response.json()
                 species_url = pokemon_data['species']['url']
                 species_response = requests.get(species_url)
                 if species_response.status_code == 200:
                     species_data = species_response.json()
+                    
+                    description = next((entry['flavor_text'] for entry in species_data['flavor_text_entries'] if entry['language']['name'] == 'es'), species_data['flavor_text_entries'][0]['flavor_text'])
+                    
+                    
+                    
                     pokemon_info = {
                             'name': pokemon_data['name'].capitalize(),
                             'id': pokemon_data['id'],
                             'types': ', '.join([t['type']['name'].capitalize() for t in pokemon_data['types']]),
                             'image_url': pokemon_data['sprites']['front_default'],
                             'attribute': 'N/A',  
-                            'description': species_data['flavor_text_entries'][0]['flavor_text'],
+                            'description': description,
                             'species': species_data['genera'][0]['genus'],
-                            'habilities': ', '.join([a['ability']['name'].capitalize() for a in pokemon_data['abilities']])
-                    }
+                            'habilities': ','.join([a['ability']['name'].capitalize() for a in pokemon_data['abilities']])
+                    }   
+                
                 
                 """ Si hay Ok, guardar en la base de datos"""
                 
